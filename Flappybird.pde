@@ -31,7 +31,7 @@ void draw() {
 void update() {
   particle.update();
   
-  for(int I = ObsticleHandler.size()-1; I >= 0; I++){
+  for(int I = ObsticleHandler.size()-1; I >= 0; I--){
     Obsticle tempObsticle = ObsticleHandler.get(I);
     
     tempObsticle.render();
