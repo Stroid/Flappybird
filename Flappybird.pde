@@ -10,31 +10,29 @@ void setup() {
 
   particle = new Particle(75, height/2, 10);
   ObsticleHandler = new ArrayList<Obsticle>();
-  
+
   createObsticle();
 }
 
 void draw() {
-  
+
   update();
   render();
-  
-  if(keyPressed){
-    if(key == ' '){
-      particle.addForce(new PVector(0,-2));
+
+  if (keyPressed) {
+    if (key == ' ') {
+      particle.addForce(new PVector(0, -2));
     }
   }
-  
 }
 
 
 void update() {
   particle.update();
-  
-  for(int I = ObsticleHandler.size()-1; I >= 0; I--){
+
+  for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
     Obsticle tempObsticle = ObsticleHandler.get(I);
-    
-    tempObsticle.render();
+
     tempObsticle.update();
   }
 }
@@ -42,6 +40,11 @@ void update() {
 void render() {
   background(bgColor);
   particle.render();
+  for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
+    Obsticle tempObsticle = ObsticleHandler.get(I);
+
+    tempObsticle.render();
+  }
 }
 
 
