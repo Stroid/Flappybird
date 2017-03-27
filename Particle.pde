@@ -20,7 +20,7 @@ class Particle {
     this.vel = new PVector(0, -4);
     this.acc = new PVector();
 
-    this.gravity = new PVector(0, 0.2);
+    this.gravity = new PVector(0, 0.5);
 
     this.r = r;
     this.d = r*2;
