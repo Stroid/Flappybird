@@ -1,6 +1,8 @@
 Particle particle;
 ArrayList<Obsticle> ObsticleHandler;
 
+HUD hud;
+
 color bgColor = color(0);
 
 int speed;
@@ -12,6 +14,7 @@ void setup() {
 
   particle = new Particle(75, height/2, 10);
   ObsticleHandler = new ArrayList<Obsticle>();
+  hud = new HUD();
 
   speed = 3;
 
@@ -28,7 +31,6 @@ void draw() {
 
   update();
   render();
-
 }
 
 void keyPressed() {
@@ -40,7 +42,8 @@ void keyPressed() {
 
 void update() {
   particle.update();
-  println(ObsticleHandler.size());
+
+  //Update the Obsticles
   for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
     Obsticle tempObsticle = ObsticleHandler.get(I);
 
@@ -55,11 +58,15 @@ void update() {
 void render() {
   background(bgColor);
   particle.render();
+  
+  //render the obsticle.
   for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
     Obsticle tempObsticle = ObsticleHandler.get(I);
 
     tempObsticle.render();
   }
+
+  hud.render();
 }
 
 
