@@ -9,6 +9,8 @@ class Obsticle {
 
   color c;
 
+  boolean passed = false;
+
   public Obsticle() {
     this.space = 100;
     this.lengthA = random(100, height-100);
@@ -24,6 +26,8 @@ class Obsticle {
   void update() {
     this.posA.x -= speed;
     this.posB.x -= speed;
+    
+
   }
   void render() {
     stroke(c);

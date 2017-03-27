@@ -39,9 +39,7 @@ class Particle {
 
     angle = map(this.vel.y, -8, 8, -0.785, 0.785);
 
-    if (this.pos.y > height || this.pos.y < 0) {
-      collition();
-    }
+
   }
 
   public void render() {
