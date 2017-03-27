@@ -7,6 +7,7 @@ color bgColor = color(0);
 
 int speed;
 int score = 0;
+int highScore = 0;
 
 float time, lastTime;
 
@@ -92,6 +93,10 @@ void render() {
 
 void resetGame() {
   particle.collition();
+  
+  if(score > highScore){
+    highScore = score;
+  }
   score = 0;
 }
 
@@ -108,4 +113,5 @@ boolean collition(PVector a, float w, float h, PVector b) {
 
 void createObsticle() {
   ObsticleHandler.add(new Obsticle());
+  
 }
