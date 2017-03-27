@@ -1,3 +1,9 @@
+/*
+ToDo:
+
+Implement a hightscore system that keeps the score after a restart.
+*/
+
 Particle particle;
 ArrayList<Obsticle> ObsticleHandler;
 
