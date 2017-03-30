@@ -1,3 +1,9 @@
+/*
+  Todo list:
+  *Add a ObsticleHandler
+  *Move all the obsticle stuff to the handler
+*/
+
 Particle particle;
 ArrayList<Obsticle> ObsticleHandler;
 
@@ -10,6 +16,8 @@ int score = 0;
 int highScore = 0;
 
 float time, lastTime;
+
+
 
 void setup() {
   size(500, 400);
@@ -37,7 +45,7 @@ void draw() {
 
 void keyPressed() {
   if (key == ' ') {
-    particle.addForce(new PVector(0, -20));
+    particle.jump();
   }
 }
 
@@ -45,12 +53,31 @@ void keyPressed() {
 void update() {
   particle.update();
 
-  if (particle.pos.y > height || particle.pos.y < 0) {
-    resetGame();
+
+
+  updateObsticles();
+}
+
+void render() {
+  background(bgColor);
+  particle.render();
+
+  //render the obsticle.
+  renderObsticles();
+
+  hud.render();
+}
+
+void resetGame() {
+  particle.collition();
+
+  if (score > highScore) {
+    highScore = score;
   }
+  score = 0;
+}
 
-
-  //Update the Obsticles
+void updateObsticles() {
   for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
     Obsticle tempObsticle = ObsticleHandler.get(I);
 
@@ -77,28 +104,14 @@ void update() {
   }
 }
 
-void render() {
-  background(bgColor);
-  particle.render();
-
-  //render the obsticle.
+void renderObsticles() {
   for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
     Obsticle tempObsticle = ObsticleHandler.get(I);
 
     tempObsticle.render();
   }
-
-  hud.render();
 }
 
-void resetGame() {
-  particle.collition();
-  
-  if(score > highScore){
-    highScore = score;
-  }
-  score = 0;
-}
 
 boolean collition(PVector a, float w, float h, PVector b) {
 
@@ -113,5 +126,4 @@ boolean collition(PVector a, float w, float h, PVector b) {
 
 void createObsticle() {
   ObsticleHandler.add(new Obsticle());
-  
 }

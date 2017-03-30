@@ -39,7 +39,23 @@ class Particle {
 
     angle = map(this.vel.y, -8, 8, -0.785, 0.785);
 
+    if (this.pos.y > height || this.pos.y < 0) {
+      resetGame();
+    }
+  }
 
+  public void collition() {
+    this.pos.y = height/2;
+    this.vel.mult(0);
+    addForce(new PVector(0, -4));
+  }
+
+  public void jump() {
+    particle.addForce(new PVector(0, -20));
+  }
+
+  public void addForce(PVector force) {
+    this.acc.add(force);
   }
 
   public void render() {
@@ -52,15 +68,5 @@ class Particle {
     ellipse(0, 0, d, d );
     line(0, 0, r, 0);
     popMatrix();
-  }
-
-  public void collition() {
-    this.pos.y = height/2;
-    this.vel.mult(0);
-    addForce(new PVector(0,-4));
-  }
-
-  public void addForce(PVector force) {
-    this.acc.add(force);
   }
 }
