@@ -1,20 +1,14 @@
 /*
   Reminder: merge Conflict!!!
-
-<<<<<<< HEAD
-  Todo list:
-  *Add a ObsticleHandler
-  *Move all the obsticle stuff to the handler
-=======
-ToDo:
-
-Implement a hightscore system that keeps the score after a restart.
->>>>>>> 165f92f363a74e996e45d8a71948747f3145d2ab
+ 
+ Todo list:
+   *Add a ObsticleHandler
+   *Move all the obsticle stuff to the handler
+   *Implement a hightscore system that keeps the score after a restart.
 */
 
 Particle particle;
-ArrayList<Obsticle> ObsticleHandler;
-
+ObsticleHandler handler;
 HUD hud;
 
 color bgColor = color(0);
@@ -31,7 +25,7 @@ void setup() {
   size(500, 400);
 
   particle = new Particle(75, height/2, 10);
-  ObsticleHandler = new ArrayList<Obsticle>();
+  handler = new ObsticleHandler();
   hud = new HUD();
 
   speed = 3;
@@ -43,7 +37,7 @@ void setup() {
 void draw() {
 
   if (millis() - lastTime > time) {
-    createObsticle();
+    handler.addObsticle();
     lastTime = millis();
   }
 
@@ -61,65 +55,28 @@ void keyPressed() {
 void update() {
   particle.update();
 
-
-
-  updateObsticles();
+  handler.update();
 }
 
 void render() {
   background(bgColor);
   particle.render();
 
-  //render the obsticle.
-  renderObsticles();
+  handler.render();
 
   hud.render();
 }
 
 void resetGame() {
   particle.collition();
+  handler.clearHandler();
+
 
   if (score > highScore) {
     highScore = score;
   }
   score = 0;
 }
-
-void updateObsticles() {
-  for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
-    Obsticle tempObsticle = ObsticleHandler.get(I);
-
-    tempObsticle.update();
-
-    if (tempObsticle.posA.x + tempObsticle.w <= particle.pos.x && !tempObsticle.passed) {
-      score++;
-      tempObsticle.passed = true;
-    }
-
-    if (tempObsticle.posA.x < -tempObsticle.lengthA) {
-      ObsticleHandler.remove(tempObsticle);
-    }
-
-    //Test if the particle has collided whit obsticle 'A'.
-    if (collition(tempObsticle.posA, tempObsticle.w, tempObsticle.lengthA, particle.pos)) {
-      resetGame();
-    }
-
-    //Test if the particle has collided whit obsticle 'B'.
-    if (collition(tempObsticle.posB, tempObsticle.w, tempObsticle.lengthB, particle.pos)) {
-      resetGame();
-    }
-  }
-}
-
-void renderObsticles() {
-  for (int I = ObsticleHandler.size()-1; I >= 0; I--) {
-    Obsticle tempObsticle = ObsticleHandler.get(I);
-
-    tempObsticle.render();
-  }
-}
-
 
 boolean collition(PVector a, float w, float h, PVector b) {
 
@@ -131,12 +88,3 @@ boolean collition(PVector a, float w, float h, PVector b) {
 
   return false;
 }
-
-void createObsticle() {
-  ObsticleHandler.add(new Obsticle());
-<<<<<<< HEAD
-}
-=======
-  
-}
->>>>>>> 165f92f363a74e996e45d8a71948747f3145d2ab
