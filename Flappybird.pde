@@ -1,9 +1,7 @@
 /*
-  Reminder: merge Conflict!!!
- 
  Todo list:
-   *Add a ObsticleHandler
-   *Move all the obsticle stuff to the handler
+   *Make a paus screen
+   *Make a Highscore screen
    *Implement a hightscore system that keeps the score after a restart.
 */
 
@@ -12,6 +10,9 @@ ObsticleHandler handler;
 HUD hud;
 
 color bgColor = color(0);
+
+//Mode = what screen is currently displayed
+int mode = 1;
 
 int speed;
 int score = 0;
