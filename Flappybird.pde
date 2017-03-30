@@ -1,7 +1,15 @@
 /*
+  Reminder: merge Conflict!!!
+
+<<<<<<< HEAD
   Todo list:
   *Add a ObsticleHandler
   *Move all the obsticle stuff to the handler
+=======
+ToDo:
+
+Implement a hightscore system that keeps the score after a restart.
+>>>>>>> 165f92f363a74e996e45d8a71948747f3145d2ab
 */
 
 Particle particle;
@@ -126,4 +134,9 @@ boolean collition(PVector a, float w, float h, PVector b) {
 
 void createObsticle() {
   ObsticleHandler.add(new Obsticle());
+<<<<<<< HEAD
 }
+=======
+  
+}
+>>>>>>> 165f92f363a74e996e45d8a71948747f3145d2ab
