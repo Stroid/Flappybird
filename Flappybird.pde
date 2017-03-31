@@ -1,3 +1,5 @@
+//UI branch
+
 /*
  Todo list:
    *Make a paus screen
@@ -11,8 +13,8 @@ HUD hud;
 
 color bgColor = color(0);
 
-//Mode = what screen is currently displayed
-int mode = 1;
+//Select what display currently is active in the ui.
+int display = 1;
 
 int speed;
 int score = 0;
