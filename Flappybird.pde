@@ -11,9 +11,6 @@ HUD hud;
 
 color bgColor = color(0);
 
-//Mode = what screen is currently displayed
-int mode = 1;
-
 int speed;
 int score = 0;
 int highScore = 0;
